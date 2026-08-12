@@ -17,25 +17,20 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'nik' => 'required|string|size:16|unique:users,username',
+            'email' => 'required|string|email|unique:users,email|unique:users,username',
             'name' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ], [
-            'nik.required' => 'NIK wajib diisi.',
-            'nik.size' => 'NIK harus 16 digit.',
-            'nik.unique' => 'NIK ini sudah terdaftar.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email ini sudah terdaftar.',
             'password.confirmed' => 'Konfirmasi password tidak cocok.'
         ]);
 
-        // Validasi ke tabel penduduks jika NIK harus ada di master data
-        $penduduk = \App\Models\Penduduk::where('nik', $request->nik)->first();
-        if (!$penduduk) {
-            return back()->withErrors(['nik' => 'NIK tidak ditemukan dalam data kependudukan.'])->withInput();
-        }
-
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->nik, // Use username column for NIK
+            'email' => $request->email,
+            'username' => $request->email, // Menggunakan email sebagai username
             'password' => Hash::make($request->password),
         ]);
 

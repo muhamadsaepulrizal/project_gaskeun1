@@ -6,17 +6,17 @@
     <div class="mb-8">
         <p class="text-xs font-mono mb-3" style="color:#06B6D4; letter-spacing:0.1em;">// SELAMAT DATANG</p>
         <h2 style="font-size:2rem; font-weight:800; letter-spacing:-0.035em; color:#F1F5F9; line-height:1.15;">Masuk ke Sistem<br><span style="background:linear-gradient(135deg,#10B981,#06B6D4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">GASKEUN</span></h2>
-        <p class="mt-2 text-sm" style="color:#475569;">Gunakan username atau NIK dan password akun Anda.</p>
+        <p class="mt-2 text-sm" style="color:#475569;">Gunakan username atau email dan password akun Anda.</p>
     </div>
 
     <form method="POST" action="{{ route('login.post') }}" class="space-y-5">
         @csrf
 
         <div>
-            <label for="username" class="label-field">NIK / Username</label>
+            <label for="username" class="label-field">Email / Username</label>
             <input id="username" name="username" type="text" required autofocus
                    class="input-field"
-                   placeholder="Masukkan NIK atau username Anda"
+                   placeholder="Masukkan Email atau username Anda"
                    value="{{ old('username') }}">
             @error('username')
                 <p class="mt-1.5 text-xs" style="color:#F43F5E;">{{ $message }}</p>

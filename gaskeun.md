@@ -46,10 +46,11 @@ Sistem ini menggunakan fitur multi-role (berbasis `spatie/laravel-permission`) d
 **Bisa Melakukan:**
 - **Dashboard Pemantauan:** Melihat data rekap distribusi yang dikhususkan untuk Hiswana Migas guna memastikan kelancaran rantai pasok LPG.
 
-### 7. Publik (Masyarakat / NIK)
+### 7. Publik (Masyarakat)
 **Fungsi Utama:** Sebagai pihak penerima (end-user) yang dapat memantau distribusi serta menyampaikan kendala di lapangan.
 **Bisa Melakukan:**
 - Mengakses halaman utama (Beranda) secara bebas.
+- **Registrasi & Login menggunakan Email** (tidak lagi diwajibkan menggunakan NIK).
 - **(Setelah Login)** Membuat dan mengirimkan pengaduan / keluhan (misalnya terkait kelangkaan LPG).
 - **(Setelah Login)** Melihat informasi spasial berupa Peta dan Heatmap persebaran/stok LPG.
 

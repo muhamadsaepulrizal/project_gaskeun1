@@ -19,7 +19,14 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        // Support login using email or username
+        $loginType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $authCredentials = [
+            $loginType => $request->username,
+            'password' => $request->password,
+        ];
+
+        if (Auth::attempt($authCredentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
             activity()->log('User logged in');
 
@@ -27,7 +34,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'NIK / Username atau password salah.',
+            'username' => 'Email / Username atau password salah.',
         ])->onlyInput('username');
     }
 
